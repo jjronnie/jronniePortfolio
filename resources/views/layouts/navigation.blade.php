@@ -15,6 +15,18 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('chat-history.index')" :active="request()->routeIs('chat-history.*')">
+                        {{ __('Chat History') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('knowledge.index')" :active="request()->routeIs('knowledge.*')">
+                        {{ __('Knowledge') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.*')">
+                        {{ __('Leads') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin-chat')" :active="request()->routeIs('admin-chat')">
+                        {{ __('AI Assistant') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +81,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('chat-history.index')" :active="request()->routeIs('chat-history.*')">
+                {{ __('Chat History') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('knowledge.index')" :active="request()->routeIs('knowledge.*')">
+                {{ __('Knowledge') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.*')">
+                {{ __('Leads') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin-chat')" :active="request()->routeIs('admin-chat')">
+                {{ __('AI Assistant') }}
             </x-responsive-nav-link>
         </div>
 
