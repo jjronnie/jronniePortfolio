@@ -9,8 +9,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('frontend.welcome');
+})->name('home');
+
+Route::view('/services', 'frontend.services')->name('services');
+Route::view('/work', 'frontend.work')->name('work');
+Route::view('/process', 'frontend.process')->name('process');
+Route::view('/contact', 'frontend.contact')->name('contact');
 
 Route::post('/chat', [ChatController::class, 'stream'])->name('chat.stream');
 Route::post('/chat/lead', [ChatLeadController::class, 'store'])->name('chat.lead.store');

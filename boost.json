@@ -3,11 +3,13 @@
         "opencode",
         "codex"
     ],
+    "cloud": false,
     "guidelines": true,
     "mcp": true,
-    "nightwatch_mcp": false,
-    "sail": false,
+    "nightwatch": false,
+    "sail": true,
     "skills": [
+        "ai-sdk-development",
         "laravel-best-practices",
         "pest-testing",
         "tailwindcss-development"
