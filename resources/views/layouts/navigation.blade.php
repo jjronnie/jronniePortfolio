@@ -24,6 +24,18 @@
                     <x-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.*')">
                         {{ __('Leads') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.services.index')" :active="request()->routeIs('admin.services.*')">
+                        {{ __('Services') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
+                        {{ __('Projects') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.skills.index')" :active="request()->routeIs('admin.skills.*')">
+                        {{ __('Skills') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.experiences.index')" :active="request()->routeIs('admin.experiences.*')">
+                        {{ __('Experience') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('admin-chat')" :active="request()->routeIs('admin-chat')">
                         {{ __('AI Assistant') }}
                     </x-nav-link>
@@ -90,6 +102,18 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.*')">
                 {{ __('Leads') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.services.index')" :active="request()->routeIs('admin.services.*')">
+                {{ __('Services') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
+                {{ __('Projects') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.skills.index')" :active="request()->routeIs('admin.skills.*')">
+                {{ __('Skills') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.experiences.index')" :active="request()->routeIs('admin.experiences.*')">
+                {{ __('Experience') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin-chat')" :active="request()->routeIs('admin-chat')">
                 {{ __('AI Assistant') }}

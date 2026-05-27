@@ -3,170 +3,67 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta
-            name="description"
-            content="JJUUKO RONALD is a web developer crafting modern websites and Laravel applications."
-        >
+        <meta name="description" content="{{ $metaDescription ?? 'Hire Jjuuko Ronald, a professional website developer and mobile app developer in Kampala, Uganda. Expert Laravel developer, React developer, and software engineer building custom web applications, mobile apps, and enterprise systems for businesses across East Africa.' }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title ?? 'JJUUKO RONALD | Web Developer' }}</title>
+        <title>{{ $title ?? 'Jjuuko Ronald - Website Developer & Mobile App Developer in Kampala, Uganda' }}</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&family=Ubuntu:wght@400;500;700&display=swap"
-            rel="stylesheet"
-        >
-
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body
-        x-data="{ menuOpen: false }"
-        @keydown.escape.window="menuOpen = false"
-        :class="{ 'overflow-hidden': menuOpen }"
-        class="bg-[#050505] text-white antialiased selection:bg-white selection:text-[#050505]"
-    >
-        <div class="relative overflow-x-clip bg-[#050505]">
-            @if (!$hideNav)
-                <div
-                    x-cloak
-                    x-show="menuOpen"
-                    x-transition.opacity.duration.300ms
-                    @click.self="menuOpen = false"
-                    class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-xl"
-                >
-                    <div class="section-shell flex min-h-screen flex-col py-6 sm:py-8">
-                        <div class="flex items-center justify-between gap-4">
-                            <a
-                                href="{{ url('/') }}"
-                                @click="menuOpen = false"
-                                class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-semibold uppercase tracking-[0.26em] text-white"
-                            >
-                                JR
-                            </a>
-
-                            <button
-                                type="button"
-                                @click="menuOpen = false"
-                                class="inline-flex items-center justify-center rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-[#050505]"
-                            >
-                                Close
-                            </button>
-                        </div>
-
-                        <nav class="my-auto grid gap-4 py-12">
-                            <a href="{{ url('/') }}" @click="menuOpen = false" class="menu-link">Home</a>
-                            <a href="{{ route('services') }}" @click="menuOpen = false" class="menu-link">Services</a>
-                            <a href="{{ route('work') }}" @click="menuOpen = false" class="menu-link">Work</a>
-                            <a href="{{ route('process') }}" @click="menuOpen = false" class="menu-link">Process</a>
-                            <a href="{{ route('contact') }}" @click="menuOpen = false" class="menu-link">Contact</a>
-                        </nav>
-
-                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/35">
-                            JJUUKO RONALD
-                        </p>
-                    </div>
+    <body>
+        @unless($hideNav ?? false)
+        <header class="nav-wrapper">
+            <nav id="nav-bar" class="nav-bar" aria-label="Primary">
+                <a href="{{ url('/') }}" class="nav-logo" aria-label="JRonnie - home">
+                    <span class="nav-logo-icon">J</span>
+                    <span class="nav-logo-text">JRonnie</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="{{ url('/#about') }}" class="nav-link">About</a></li>
+                    <li><a href="{{ url('/#experience') }}" class="nav-link">Experience</a></li>
+                    <li><a href="{{ url('/#skills') }}" class="nav-link">Skills</a></li>
+                    <li><a href="{{ route('projects') }}" class="nav-link">Projects</a></li>
+                    <li><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                </ul>
+                <a href="{{ url('/#contact') }}" class="nav-cta">Get in touch</a>
+                <button id="mobile-btn" class="nav-mobile-btn" aria-label="Toggle menu" aria-expanded="false">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div id="mobile-menu" class="nav-mobile" style="display: none">
+                    <ul class="nav-mobile-links">
+                        <li><a href="{{ url('/#about') }}" class="nav-mobile-link">About</a></li>
+                        <li><a href="{{ url('/#experience') }}" class="nav-mobile-link">Experience</a></li>
+                        <li><a href="{{ url('/#skills') }}" class="nav-mobile-link">Skills</a></li>
+                        <li><a href="{{ route('projects') }}" class="nav-mobile-link">Projects</a></li>
+                        <li><a href="{{ route('services') }}" class="nav-mobile-link">Services</a></li>
+                        <li><a href="{{ url('/#contact') }}" class="nav-mobile-cta">Get in touch</a></li>
+                    </ul>
                 </div>
+            </nav>
+        </header>
+        @endunless
 
-                <nav class="sticky top-0 z-30 w-full bg-[#050505]/80 backdrop-blur-md">
-                    <div class="section-shell flex items-center justify-between gap-4 py-4 sm:py-5">
-                        <a
-                            href="{{ url('/') }}"
-                            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.07] text-xs font-semibold uppercase tracking-[0.26em] text-white transition duration-300 hover:bg-white hover:text-[#050505] sm:h-11 sm:w-11"
-                        >
-                            JR
-                        </a>
+        {{ $slot }}
 
-                        <div class="flex items-center gap-3">
-                            <a
-                                href="{{ route('contact') }}"
-                                class="inline-flex items-center justify-center rounded-full border border-white/20 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white transition duration-300 hover:bg-white hover:text-[#050505] sm:px-4 sm:py-2 sm:text-[0.72rem]"
-                            >
-                                Connect With Me
-                            </a>
-
-                            <button
-                                type="button"
-                                @click="menuOpen = true"
-                                aria-label="Open menu"
-                                class="inline-flex flex-col items-center justify-center gap-[0.18rem] rounded-full border border-white/20 p-2.5 text-white transition duration-300 hover:bg-white hover:text-[#050505] sm:gap-1 sm:p-3"
-                            >
-                                <span class="block h-px w-4 bg-current sm:w-5"></span>
-                                <span class="block h-px w-4 bg-current sm:w-5"></span>
-                                <span class="block h-px w-4 bg-current sm:w-5"></span>
-                            </button>
-                        </div>
-                    </div>
-                </nav>
-            @endif
-
-            {{ $slot }}
-
-            <footer class="border-t border-white/5">
-                <div class="section-shell py-12 sm:py-16 lg:py-20">
-                    <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
-                        <div class="max-w-lg space-y-6">
-                            <a
-                                href="{{ url('/') }}"
-                                class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.07] text-sm font-semibold uppercase tracking-[0.26em] text-white transition duration-300 hover:bg-white hover:text-[#050505]"
-                            >
-                                JR
-                            </a>
-                            <p class="text-sm leading-7 text-white/50">
-                                Web developer crafting modern websites and Laravel applications with clean
-                                structure, polished motion, and thoughtful design.
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-10 sm:grid-cols-3 sm:gap-16">
-                            <div class="space-y-4">
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/30">
-                                    Pages
-                                </p>
-                                <nav class="flex flex-col gap-2.5">
-                                    <a href="{{ url('/') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Home</a>
-                                    <a href="{{ route('services') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Services</a>
-                                    <a href="{{ route('work') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Work</a>
-                                    <a href="{{ route('process') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Process</a>
-                                    <a href="{{ route('contact') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Contact</a>
-                                </nav>
-                            </div>
-
-                            <div class="space-y-4">
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/30">
-                                    Services
-                                </p>
-                                <nav class="flex flex-col gap-2.5">
-                                    <a href="{{ route('services') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Web Design</a>
-                                    <a href="{{ route('services') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Laravel Development</a>
-                                    <a href="{{ route('services') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Optimization & Support</a>
-                                </nav>
-                            </div>
-
-                            <div class="space-y-4">
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/30">
-                                    Connect
-                                </p>
-                                <nav class="flex flex-col gap-2.5">
-                                    <a href="{{ route('contact') }}" class="text-sm text-white/60 transition duration-300 hover:text-white">Get in Touch</a>
-                                    <a href="https://github.com/jronnie" target="_blank" rel="noopener noreferrer" class="text-sm text-white/60 transition duration-300 hover:text-white">GitHub</a>
-                                    <a href="https://linkedin.com/in/jronnie" target="_blank" rel="noopener noreferrer" class="text-sm text-white/60 transition duration-300 hover:text-white">LinkedIn</a>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex flex-col justify-between gap-4 border-t border-white/5 pt-6 sm:flex-row sm:items-center">
-                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/30">
-                            &copy; {{ date('Y') }} JJUUKO RONALD
-                        </p>
-                        <p class="text-xs text-white/25">
-                            Built with Laravel &amp; Tailwind CSS
-                        </p>
-                    </div>
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-links">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ url('/#about') }}">About</a>
+                    <a href="{{ route('projects') }}">Projects</a>
+                    <a href="{{ route('services') }}">Services</a>
+                    <a href="{{ url('/#contact') }}">Contact</a>
                 </div>
-            </footer>
-        </div>
+                <p class="footer-copy">
+                    &copy; {{ date('Y') }} Jjuuko Ronald. All rights reserved.
+                </p>
+            </div>
+        </footer>
 
         <x-chat-widget />
     </body>

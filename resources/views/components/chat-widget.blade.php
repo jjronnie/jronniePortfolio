@@ -40,7 +40,7 @@
                 <template x-for="chat in chats" :key="chat.id">
                     <button
                         @click="loadChat(chat.id); sidebar = false"
-                        :class="chat.id === activeChatId ? 'bg-[#f05517]/10 text-[#f05517]' : 'text-gray-700 hover:bg-gray-50'"
+                        :class="chat.id === activeChatId ? 'bg-[#4F6EF5]/10 text-[#4F6EF5]' : 'text-gray-700 hover:bg-gray-50'"
                         class="w-full text-left px-4 py-3 transition"
                     >
                         <p class="text-[0.78rem] font-medium truncate" x-text="chat.title || 'New conversation'"></p>
@@ -63,7 +63,7 @@
         {{-- Main Chat --}}
         <div class="relative flex flex-1 flex-col min-w-0">
             {{-- Header --}}
-            <div class="flex items-center gap-3 px-5 py-4 bg-gradient-to-r from-[#f05517] to-[#ff7a3d] text-white shrink-0">
+            <div class="flex items-center gap-3 px-5 py-4 bg-gradient-to-r from-[#4F6EF5] to-[#6B8AFF] text-white shrink-0">
                 <button
                     @click="sidebar = !sidebar"
                     title="Chat history"
@@ -105,7 +105,7 @@
                     <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
                         <div
                             :class="msg.role === 'user'
-                                ? 'bg-[#f05517] text-white rounded-2xl rounded-br-md px-4 py-2.5 max-w-[85%]'
+                                ? 'bg-[#4F6EF5] text-white rounded-2xl rounded-br-md px-4 py-2.5 max-w-[85%]'
                                 : 'bg-gray-100/80 backdrop-blur-sm text-gray-800 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]'"
                         >
                             <div
@@ -138,12 +138,12 @@
                         type="text"
                         placeholder="Type a message..."
                         :disabled="loading"
-                        class="flex-1 rounded-xl border border-gray-200 bg-white/80 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 backdrop-blur-sm outline-none transition focus:border-[#f05517]/40 focus:ring-2 focus:ring-[#f05517]/10 disabled:opacity-50"
+                        class="flex-1 rounded-xl border border-gray-200 bg-white/80 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 backdrop-blur-sm outline-none transition focus:border-[#4F6EF5]/40 focus:ring-2 focus:ring-[#4F6EF5]/10 disabled:opacity-50"
                     >
                     <button
                         type="submit"
                         :disabled="loading || !input.trim()"
-                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f05517] text-white transition hover:bg-[#d64a13] disabled:opacity-40 disabled:cursor-not-allowed"
+                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#4F6EF5] text-white transition hover:bg-[#3A54D6] disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -157,7 +157,7 @@
     {{-- Toggle Button --}}
     <button
         @click="open = !open; if (open) triggerGreeting()"
-        class="flex h-14 w-14 items-center justify-center rounded-full bg-[#f05517] text-white shadow-[0_4px_20px_rgba(240,85,23,0.4)] transition hover:scale-105 hover:shadow-[0_6px_28px_rgba(240,85,23,0.5)] active:scale-95 ml-auto"
+        class="flex h-14 w-14 items-center justify-center rounded-full bg-[#4F6EF5] text-white shadow-[0_4px_20px_rgba(79,110,245,0.4)] transition hover:scale-105 hover:shadow-[0_6px_28px_rgba(79,110,245,0.5)] active:scale-95 ml-auto"
     >
         <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -182,7 +182,7 @@
     .msg-content th { background: #f9fafb; padding: 0.25rem 0.5rem; text-align: left; font-weight: 600; border: 1px solid #e5e7eb; }
     .msg-content td { padding: 0.25rem 0.5rem; border: 1px solid #e5e7eb; }
     .msg-content code { background: #f3f4f6; padding: 0.1em 0.3em; border-radius: 0.25em; font-size: 0.9em; }
-    .msg-content a { color: #f05517; text-decoration: underline; }
+    .msg-content a { color: #4F6EF5; text-decoration: underline; }
 </style>
 <script>
 function md(text) {

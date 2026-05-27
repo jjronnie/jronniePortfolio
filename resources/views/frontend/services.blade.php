@@ -1,124 +1,94 @@
-@php
-    $services = [
-        [
-            'number' => '01',
-            'title' => 'Web Design',
-            'description' => 'Design-led websites with strong hierarchy, polished motion, and premium presentation across devices.',
-            'items' => [
-                'Portfolio websites',
-                'Landing pages',
-                'Responsive UI systems',
-                'Visual refinement',
-            ],
-            'details' => 'Every website starts with a clear visual direction. I focus on typography, spacing, colour, and motion to create interfaces that feel intentional and stand out across every screen size.',
-        ],
-        [
-            'number' => '02',
-            'title' => 'Laravel Development',
-            'description' => 'Custom Laravel builds that balance frontend elegance with clean architecture and dependable delivery.',
-            'items' => [
-                'Custom Laravel applications',
-                'Admin dashboards',
-                'Authentication and roles',
-                'API integrations',
-            ],
-            'details' => 'Robust backend systems built with Laravel\'s ecosystem. From authentication workflows to RESTful APIs, I deliver clean, maintainable code that scales with your project.',
-        ],
-        [
-            'number' => '03',
-            'title' => 'Optimization & Support',
-            'description' => 'Performance tuning, interface cleanup, and launch support for websites that need to feel sharper.',
-            'items' => [
-                'Speed optimization',
-                'UI bug fixing',
-                'Tailwind cleanup',
-                'Launch support',
-            ],
-            'details' => 'Already have a site? I can improve load times, fix layout inconsistencies, clean up Tailwind utility soup, and provide launch support so everything goes live without a hitch.',
-        ],
-    ];
-@endphp
+<x-frontend-layout title="Services - Web Development, Mobile Apps & Software Engineering | Kampala, Uganda"
+    meta-description="Professional web development and mobile app development services in Kampala, Uganda. Expert Laravel developer, React developer, and Flutter app developer. Custom software engineering, UI/UX design, SEO, and WordPress development by Jjuuko Ronald.">
 
-<x-frontend-layout title="Services | JJUUKO RONALD">
-    <section class="relative overflow-hidden bg-[#070707] pt-32 sm:pt-36 lg:pt-40">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.04),transparent_40%)]"></div>
-
-        <div class="section-shell relative pb-20 sm:pb-24 lg:pb-28">
-            <div class="max-w-2xl">
-                <p class="kicker text-white/40">Services</p>
-                <h1 class="mt-4 font-display text-[clamp(3rem,8vw,6.5rem)] leading-[0.9] tracking-[-0.06em]">
-                    What I build and how I help.
-                </h1>
-                <p class="mt-6 max-w-xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
-                    From design-led frontends to full-stack Laravel systems, every project gets the same
-                    attention to structure, performance, and visual quality.
+    <section class="section" style="padding-top: 7rem !important; padding-bottom: 5rem !important">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-eyebrow">// What I Do</p>
+                <h2 class="section-title">What I <span class="text-gradient">Deliver</span></h2>
+                <p class="section-desc">
+                    A comprehensive range of development services to bring your digital vision to life -
+                    from idea to launch and beyond.
                 </p>
             </div>
-        </div>
-    </section>
 
-    <section class="bg-[#050505] py-20 sm:py-24 lg:py-28">
-        <div class="section-shell space-y-24">
-            @foreach ($services as $service)
-                <article class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-                    <div class="space-y-6">
-                        <p class="font-display text-[clamp(4rem,12vw,8rem)] leading-none tracking-[-0.08em] text-white/10">
-                            {{ $service['number'] }}
-                        </p>
-                        <div class="space-y-4">
-                            <h2 class="font-display text-3xl leading-tight tracking-[-0.05em] sm:text-4xl">
-                                {{ $service['title'] }}
-                            </h2>
-                            <p class="text-base leading-7 text-white/60">
-                                {{ $service['description'] }}
-                            </p>
+            <div class="services-grid stagger fade-in">
+                @foreach ($coreServices as $service)
+                    <div class="service-card">
+                        <div class="service-icon">
+                            @if ($service->icon)
+                                <i data-lucide="{{ $service->icon }}" style="width:22px;height:22px"></i>
+                            @else
+                                {!! $service->icon_svg !!}
+                            @endif
                         </div>
+                        <h3 class="service-title">{{ $service->title }}</h3>
+                        <p class="service-desc">{{ $service->description }}</p>
+                        @if ($service->features)
+                            <ul class="service-bullets">
+                                @foreach ($service->features as $feature)
+                                    <li>{{ $feature }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
-
-                    <div class="space-y-8">
-                        <p class="text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
-                            {{ $service['details'] }}
-                        </p>
-
-                        <div class="space-y-0">
-                            @foreach ($service['items'] as $item)
-                                <div class="service-row group">
-                                    <p class="text-lg text-white/88 transition duration-300 group-hover:translate-x-2 group-hover:text-white">
-                                        {{ $item }}
-                                    </p>
-                                    <p class="text-sm font-medium uppercase tracking-[0.32em] text-white/35">
-                                        {{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}
-                                    </p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </article>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="bg-[#f05517] py-20 text-[#090909] sm:py-24">
-        <div class="section-shell">
-            <div class="rounded-[2rem] border border-black/15 bg-black/5 p-6 backdrop-blur-sm sm:p-8 lg:p-12">
-                <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-                    <div class="space-y-4">
-                        <p class="kicker text-black/55">Ready to Start?</p>
-                        <h2 class="font-display text-[clamp(2.4rem,5vw,4rem)] leading-[0.92] tracking-[-0.06em]">
-                            Let's talk about your next project.
-                        </h2>
-                    </div>
-
-                    <div class="flex flex-col gap-3 lg:items-end">
-                        <a href="{{ route('work') }}" class="action-dark">
-                            View Recent Work
-                        </a>
-                        <a href="{{ route('contact') }}" class="action-light">
-                            Get in Touch
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+
+    @if ($beyondServices->isNotEmpty())
+        <section class="section" style="padding-top: 0 !important">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <p class="section-eyebrow">// Beyond the Basics</p>
+                    <h2 class="section-title">Additional <span class="text-gradient">Services</span></h2>
+                </div>
+
+                <div class="extra-grid stagger fade-in">
+                    @foreach ($beyondServices as $service)
+                        <div class="extra-card">
+                            <div class="service-icon" style="flex-shrink: 0">
+                                @if ($service->icon)
+                                    <i data-lucide="{{ $service->icon }}" style="width:22px;height:22px"></i>
+                                @else
+                                    {!! $service->icon_svg !!}
+                                @endif
+                            </div>
+                            <div>
+                                <h3 style="font-size: 1.125rem; font-weight: 600">{{ $service->title }}</h3>
+                                <p style="margin-top: 0.375rem; font-size: 0.875rem; color: var(--muted-foreground)">
+                                    {{ $service->description }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="cta-card fade-in">
+                    <h3 class="cta-title">Have a project in mind?</h3>
+                    <p class="cta-desc">
+                        Let's turn your idea into a polished, production-ready product your users will love.
+                    </p>
+                    <a href="{{ url('/#contact') }}" class="btn-primary">
+                        Start a conversation
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    @endif
+
 </x-frontend-layout>
