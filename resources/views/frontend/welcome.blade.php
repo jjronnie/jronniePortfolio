@@ -925,6 +925,7 @@
                 gap: 0.5rem;
                 font-size: 1.25rem;
                 font-weight: 600;
+                margin-top: 0.75rem;
               "
             >
               <svg
@@ -943,61 +944,64 @@
               </svg>
               Send a Message
             </h3>
-            <div id="contact-form-content"
-              style="
-                display: grid;
-                gap: 1rem;
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-              "
-            >
-              <div class="form-group">
-                <label class="form-label">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  class="form-input"
-                />
+            <div style="position: relative; min-height: 340px">
+              <div id="contact-form-content">
+                <div
+                  style="
+                    display: grid;
+                    gap: 1rem;
+                    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                  "
+                >
+                  <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Your name"
+                      class="form-input"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="you@example.com"
+                      class="form-input"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Subject</label>
+                  <input type="text" name="subject" placeholder="Project inquiry" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows="5"
+                    placeholder="Tell me about your project..."
+                    class="form-textarea"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="justify-content: center">
+                  Send Message
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
+                </button>
               </div>
-              <div class="form-group">
-                <label class="form-label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="you@example.com"
-                  class="form-input"
-                />
+              <div id="contact-success">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1.5rem">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <h3 style="font-size:1.25rem;font-weight:600;margin-bottom:0.5rem">Message Sent!</h3>
+                <p style="color:var(--muted-foreground);max-width:20rem">Thank you! Your message has been received. I'll get back to you soon.</p>
               </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Subject</label>
-              <input type="text" name="subject" placeholder="Project inquiry" class="form-input" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Message</label>
-              <textarea
-                name="message"
-                required
-                rows="5"
-                placeholder="Tell me about your project..."
-                class="form-textarea"
-              ></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="justify-content: center">
-              Send Message
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
-            </button>
-          </div>
-          <div id="contact-success" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1rem">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1.5rem">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <h3 style="font-size:1.25rem;font-weight:600;margin-bottom:0.5rem">Message Sent!</h3>
-            <p style="color:var(--muted-foreground);max-width:20rem">Thank you! Your message has been received. I'll get back to you soon.</p>
-          </div>
           </form>
         </div>
       </div>
@@ -1024,8 +1028,17 @@ if (contactForm) {
             const data = await res.json();
             if (data.success) {
                 contactForm.reset();
-                if (contactFormContent) contactFormContent.style.display = 'none';
-                if (contactSuccess) contactSuccess.style.display = 'flex';
+                if (contactFormContent) {
+                    contactFormContent.style.opacity = '0';
+                    contactFormContent.style.transform = 'translateY(-8px)';
+                    contactFormContent.style.pointerEvents = 'none';
+                }
+                if (contactSuccess) {
+                    contactSuccess.style.display = 'flex';
+                    requestAnimationFrame(() => {
+                        contactSuccess.classList.add('show');
+                    });
+                }
             }
         } catch (err) {
             //

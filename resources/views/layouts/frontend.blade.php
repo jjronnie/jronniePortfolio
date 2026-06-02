@@ -34,7 +34,7 @@
                         <line x1="3" y1="18" x2="21" y2="18" />
                     </svg>
                 </button>
-                <div id="mobile-menu" class="nav-mobile" style="display: none">
+                <div id="mobile-menu" class="nav-mobile">
                     <ul class="nav-mobile-links">
                         <li><a href="{{ url('/#about') }}" class="nav-mobile-link">About</a></li>
                         <li><a href="{{ url('/#experience') }}" class="nav-mobile-link">Experience</a></li>

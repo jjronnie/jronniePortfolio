@@ -201,6 +201,32 @@ img { max-width: 100%; display: block; }
   color: var(--foreground);
   border: none;
   cursor: pointer;
+  position: relative;
+}
+
+.nav-mobile-btn svg {
+  transition: transform 250ms ease;
+}
+
+.nav-mobile-btn svg line {
+  transition: transform 250ms ease, opacity 200ms ease;
+  transform-origin: center;
+}
+
+.nav-mobile-btn.active svg line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-mobile-btn.active svg line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-mobile-btn.active svg line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-mobile-btn .close-icon {
+  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -217,6 +243,16 @@ img { max-width: 100%; display: block; }
   background: oklch(0.08 0 0 / 0.96);
   backdrop-filter: blur(10px);
   border: 1px solid oklch(0.22 0.008 240 / 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px) scale(0.97);
+  transition: opacity 250ms ease, transform 250ms ease, visibility 250ms ease;
+}
+
+.nav-mobile.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 
 .nav-mobile-links {
@@ -582,6 +618,9 @@ img { max-width: 100%; display: block; }
 }
 
 .exp-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
   font-size: 0.875rem;
@@ -764,6 +803,7 @@ img { max-width: 100%; display: block; }
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
 .skill-group-title::before {
@@ -787,6 +827,11 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
 }
 
 .skill-header {
@@ -941,6 +986,34 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
+}
+
+#contact-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+#contact-success {
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+#contact-success.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .form-group {

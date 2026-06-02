@@ -1,7 +1,7 @@
 <div
     x-data="chatWidget()"
     x-cloak
-    class="fixed bottom-6 right-6 z-50 font-['Ubuntu',sans-serif]"
+    class="fixed bottom-6 right-6 z-[60] font-['Ubuntu',sans-serif]"
 >
     {{-- Chat Window --}}
     <div
