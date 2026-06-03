@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            
+
             $table->string('category');
             $table->string('icon')->nullable();
             $table->text('icon_svg')->nullable();

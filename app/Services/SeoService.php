@@ -64,7 +64,7 @@ class SeoService
     public function homeSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Jjuuko Ronald — Website & Mobile App Developer Uganda',
+            title: 'Jjuuko Ronald | Website & Mobile App Developer Uganda',
             description: 'Jjuuko Ronald is a website and mobile app developer based in Kampala, Uganda. Building custom websites, cross-platform mobile apps, and web applications for businesses in Uganda and East Africa since 2022.',
             image: '/images/og-home.svg',
             enableTitleSuffix: false,
@@ -81,7 +81,7 @@ class SeoService
         $collection->push(fn () => [
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
-            'name' => 'Jjuuko Ronald — Website & Mobile App Developer Uganda',
+            'name' => 'Jjuuko Ronald | Website & Mobile App Developer Uganda',
             'url' => $this->identity['url'],
             'description' => $this->identity['description'],
             'author' => ['@type' => 'Person', 'name' => $this->identity['name']],
@@ -90,7 +90,7 @@ class SeoService
         $collection->push(fn () => [
             '@context' => 'https://schema.org',
             '@type' => 'ProfessionalService',
-            'name' => 'Jjuuko Ronald — Website & Mobile App Development Services',
+            'name' => 'Jjuuko Ronald | Website & Mobile App Development Services',
             'description' => 'Custom website and mobile application development services in Uganda and East Africa.',
             'url' => $this->identity['url'],
             'email' => $this->identity['email'],
@@ -123,7 +123,7 @@ class SeoService
     public function servicesSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Services — Website & Mobile App Development Uganda',
+            title: 'Services | Website & Mobile App Development Uganda',
             description: 'Professional website development, mobile app development, and software consulting services in Uganda and East Africa. Custom solutions for businesses in Kampala and beyond.',
             image: '/images/og-services.svg',
             schema: $this->servicesSchema(),
@@ -181,8 +181,8 @@ class SeoService
     public function projectsSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Portfolio — Websites & Mobile Apps',
-            description: 'Explore projects by Jjuuko Ronald — custom websites, cross-platform mobile apps, and web applications built for clients in Uganda and East Africa.',
+            title: 'Portfolio | Websites & Mobile Apps',
+            description: 'Explore projects by Jjuuko Ronald | custom websites, cross-platform mobile apps, and web applications built for clients in Uganda and East Africa.',
             image: '/images/og-projects.svg',
             schema: $this->projectsIndexSchema(),
         );
@@ -194,7 +194,7 @@ class SeoService
         $collection->push(fn () => [
             '@context' => 'https://schema.org',
             '@type' => 'CreativeWork',
-            'name' => 'Portfolio of Jjuuko Ronald — Website & Mobile App Developer Uganda',
+            'name' => 'Portfolio of Jjuuko Ronald | Website & Mobile App Developer Uganda',
             'description' => 'A collection of websites, mobile apps, and web applications developed by Jjuuko Ronald for clients in Uganda and East Africa.',
             'url' => $this->identity['url'].'/projects',
             'author' => ['@type' => 'Person', 'name' => $this->identity['name'], 'url' => $this->identity['url']],
@@ -205,7 +205,7 @@ class SeoService
 
     public function projectSeoData(array $project): SEOData
     {
-        $title = ($project['name'] ?? 'Project').' — Jjuuko Ronald';
+        $title = ($project['name'] ?? 'Project').' | Jjuuko Ronald';
         $description = $project['description']
             ?? 'A project built by Jjuuko Ronald, website and mobile app developer from Kampala, Uganda.';
 
@@ -242,7 +242,7 @@ class SeoService
     {
         return new SEOData(
             title: 'Contact Jjuuko Ronald',
-            description: 'Get in touch with Jjuuko Ronald — hire a website and mobile app developer in Uganda for your website, mobile app, or web application project. Based in Kampala, serving East Africa.',
+            description: 'Get in touch with Jjuuko Ronald | hire a website and mobile app developer in Uganda for your website, mobile app, or web application project. Based in Kampala, serving East Africa.',
             image: '/images/og-contact.svg',
             schema: $this->contactSchema(),
         );
@@ -267,7 +267,7 @@ class SeoService
     public function blogIndexSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Blog — Website & Mobile App Development',
+            title: 'Blog | Website & Mobile App Development',
             description: 'Articles on website development, mobile app development, web applications, and software engineering from Jjuuko Ronald, a developer based in Kampala, Uganda.',
             image: '/images/og-blog.svg',
             schema: $this->blogIndexSchema(),
@@ -280,7 +280,7 @@ class SeoService
         $collection->push(fn () => [
             '@context' => 'https://schema.org',
             '@type' => 'Blog',
-            'name' => 'Jjuuko Ronald — Dev Blog',
+            'name' => 'Jjuuko Ronald | Dev Blog',
             'description' => 'Articles on website and mobile app development from a Uganda-based developer.',
             'url' => $this->identity['url'].'/blog',
             'author' => ['@type' => 'Person', 'name' => $this->identity['name'], 'url' => $this->identity['url']],

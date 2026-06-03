@@ -87,21 +87,22 @@
         .prose-custom h2 {
             font-size: 1.625rem;
             font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
             color: var(--foreground);
             line-height: 1.3;
         }
         .prose-custom h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
             color: var(--foreground);
             line-height: 1.35;
         }
+        .prose-custom > div,
         .prose-custom p {
-            margin-bottom: 1.125rem;
+            margin-bottom: 1.25rem;
             font-size: 1.0625rem;
             line-height: 1.8;
             color: var(--foreground);

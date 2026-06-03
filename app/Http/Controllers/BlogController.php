@@ -25,6 +25,7 @@ class BlogController extends Controller
             ->get();
 
         $popularTags = Tag::withCount('posts')
+            ->having('posts_count', '>', 0)
             ->orderByDesc('posts_count')
             ->limit(20)
             ->get();

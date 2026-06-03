@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ExperienceController as AdminExperienceController;
+use App\Http\Controllers\Admin\PostCategoryController as AdminPostCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('skills', AdminSkillController::class);
         Route::resource('experiences', AdminExperienceController::class);
         Route::resource('posts', AdminPostController::class)->parameters(['posts' => 'post']);
+        Route::resource('post-categories', AdminPostCategoryController::class);
     });
 });
 
