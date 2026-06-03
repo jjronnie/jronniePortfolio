@@ -40,6 +40,10 @@
                         request()->routeIs('knowledge.*')">
                         {{ __('AI') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('chat-history.index')" :active="request()->routeIs('chat-history.*')">
+                        {{ __('Chat History') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -97,6 +101,8 @@
             <x-responsive-nav-link :href="route('admin.experiences.index')" :active="request()->routeIs('admin.experiences.*')">{{ __('Experience') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.*')">{{ __('Leads') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin-chat')" :active="request()->routeIs('admin-chat')">{{ __('AI') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('chat-history.index')" :active="request()->routeIs('chat-history.*')">{{ __('AI Chat History') }}</x-responsive-nav-link>
+
         </div>
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
