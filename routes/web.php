@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\ExperienceController as AdminExperienceController;
 use App\Http\Controllers\Admin\PostCategoryController as AdminPostCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
@@ -92,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('posts', AdminPostController::class)->parameters(['posts' => 'post']);
         Route::resource('post-categories', AdminPostCategoryController::class);
         Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);
+        Route::resource('contacts', AdminContactController::class)->only(['index', 'show', 'destroy']);
     });
 });
 
