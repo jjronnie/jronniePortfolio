@@ -1,19 +1,26 @@
 <?php
 
 use App\Http\Controllers\Admin\ExperienceController as AdminExperienceController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SkillController as AdminSkillController;
 use App\Http\Controllers\AdminChatController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatHistoryController;
 use App\Http\Controllers\ChatLeadController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\KnowledgeController;
+use App\Http\Controllers\LlmsTxtController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RobotsController;
+use App\Http\Controllers\SitemapController;
 use App\Models\ChatLead;
 use App\Models\Contact;
+use App\Models\Experience;
+use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
@@ -25,7 +32,18 @@ Route::get('/projects', [FrontendController::class, 'projects'])->name('projects
 
 Route::redirect('/work', '/projects');
 Route::get('/process', fn () => redirect('/'));
-Route::get('/contact', fn () => redirect('/#contact'));
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('blog.category');
+Route::get('/blog/tag/{slug}', [BlogController::class, 'tag'])->name('blog.tag');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap.xml');
+Route::get('/robots.txt', RobotsController::class)->name('robots.txt');
+Route::get('/llms.txt', LlmsTxtController::class)->name('llms.txt');
+
+Route::feeds();
 
 Route::post('/chat', [ChatController::class, 'stream'])->name('chat.stream');
 Route::post('/chat/lead', [ChatLeadController::class, 'store'])->name('chat.lead.store');
@@ -39,9 +57,9 @@ Route::get('/dashboard', function () {
         'skills' => Skill::count(),
         'contacts' => Contact::count(),
         'leads' => ChatLead::count(),
-        'servicesByType' => Service::selectRaw('type, count(*) as count')->groupBy('type')->pluck('count', 'type'),
-        'projectsByCategory' => Project::selectRaw('category, count(*) as count')->groupBy('category')->pluck('count', 'category'),
-        'contactsByMonth' => Contact::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, count(*) as count")->groupBy('month')->orderBy('month')->pluck('count', 'month'),
+        'posts' => Post::count(),
+        'publishedPosts' => Post::where('status', 'published')->count(),
+        'experiences' => Experience::count(),
     ];
 
     return view('dashboard', compact('stats'));
@@ -65,6 +83,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('projects', AdminProjectController::class);
         Route::resource('skills', AdminSkillController::class);
         Route::resource('experiences', AdminExperienceController::class);
+        Route::resource('posts', AdminPostController::class)->parameters(['posts' => 'post']);
     });
 });
 

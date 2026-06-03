@@ -1,5 +1,4 @@
-<x-frontend-layout title="Services - Web Development, Mobile Apps & Software Engineering | Kampala, Uganda"
-    meta-description="Professional web development and mobile app development services in Kampala, Uganda. Expert Laravel developer, React developer, and Flutter app developer. Custom software engineering, UI/UX design, SEO, and WordPress development by Jjuuko Ronald.">
+<x-frontend-layout :seoData="$seoData">
 
     <section class="section" style="padding-top: 7rem !important; padding-bottom: 5rem !important">
         <div class="container">
@@ -70,7 +69,7 @@
                     <p class="cta-desc">
                         Let's turn your idea into a polished, production-ready product your users will love.
                     </p>
-                    <a href="{{ url('/#contact') }}" class="btn-primary">
+                    <a href="{{ route('contact') }}" class="btn-primary">
                         Start a conversation
                         <svg
                             width="16"

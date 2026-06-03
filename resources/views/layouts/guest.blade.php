@@ -7,24 +7,24 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
+    <body class="font-sans antialiased" style="background: var(--background); color: var(--foreground);">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 px-4">
+            <div class="mb-6">
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <img src="{{ asset('assets/img/favicon.png') }}" alt="JRonnie" class="w-16 h-16 rounded-2xl shadow-lg">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div style="background: var(--card); border: 1px solid var(--border); border-radius: 1.5rem; padding: 2rem; width: 100%; max-width: 28rem; box-shadow: var(--shadow-glow);">
                 {{ $slot }}
             </div>
+
+            <p class="mt-6 text-sm" style="color: var(--muted-foreground);">
+                &copy; {{ date('Y') }} Jjuuko Ronald. All rights reserved.
+            </p>
         </div>
     </body>
 </html>

@@ -4,10 +4,7 @@ import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 import Alpine from 'alpinejs';
-import ApexCharts from 'apexcharts';
 import { createIcons, Database, FileType, Globe, Layout, Palette, Search, Server, Shield, Smartphone, Zap } from 'lucide';
-
-window.ApexCharts = ApexCharts;
 
 window.Alpine = Alpine;
 Alpine.start();

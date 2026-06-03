@@ -12,8 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            
             $table->string('category');
             $table->string('icon')->nullable();
+            $table->text('icon_svg')->nullable();
+
             $table->unsignedTinyInteger('percentage')->default(0);
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_active')->default(true);

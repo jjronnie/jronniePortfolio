@@ -1,5 +1,4 @@
-<x-frontend-layout title="Portfolio - Web & Mobile App Projects by Jjuuko Ronald | Uganda Developer"
-    meta-description="Explore real projects by Jjuuko Ronald, a Uganda-based website developer and software engineer. Web applications, mobile apps, and enterprise systems built with Laravel, React, Flutter, and more.">
+<x-frontend-layout :seoData="$seoData">
 
     <section class="section" style="padding-top: 7rem !important; padding-bottom: 5rem !important">
         <div class="container">
@@ -74,7 +73,7 @@
                 <p class="cta-desc">
                     I'm available for new builds and collaborations - let's make something exceptional.
                 </p>
-                <a href="/#contact" class="btn-primary">
+                <a href="{{ route('contact') }}" class="btn-primary">
                     Let's work together
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12" />

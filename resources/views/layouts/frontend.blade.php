@@ -1,15 +1,19 @@
+@props(['seoData' => null])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="{{ $metaDescription ?? 'Hire Jjuuko Ronald, a professional website developer and mobile app developer in Kampala, Uganda. Expert Laravel developer, React developer, and software engineer building custom web applications, mobile apps, and enterprise systems for businesses across East Africa.' }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title ?? 'Jjuuko Ronald - Website Developer & Mobile App Developer in Kampala, Uganda' }}</title>
+        {!! seo($seoData) !!}
 
         <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+        <link rel="alternate" type="application/atom+xml" title="Jjuuko Ronald Dev Blog — Atom Feed" href="{{ url('/feed/atom') }}">
+        <link rel="alternate" type="application/rss+xml" title="Jjuuko Ronald Dev Blog — RSS Feed" href="{{ url('/feed/rss') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('styles')
     </head>
     <body>
         @unless($hideNav ?? false)
@@ -25,8 +29,10 @@
                     <li><a href="{{ url('/#skills') }}" class="nav-link">Skills</a></li>
                     <li><a href="{{ route('projects') }}" class="nav-link">Projects</a></li>
                     <li><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                    <li><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                    <li><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
                 </ul>
-                <a href="{{ url('/#contact') }}" class="nav-cta">Get in touch</a>
+                <a href="{{ route('contact') }}" class="nav-cta">Get in touch</a>
                 <button id="mobile-btn" class="nav-mobile-btn" aria-label="Toggle menu" aria-expanded="false">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                         <line x1="3" y1="6" x2="21" y2="6" />
@@ -41,7 +47,8 @@
                         <li><a href="{{ url('/#skills') }}" class="nav-mobile-link">Skills</a></li>
                         <li><a href="{{ route('projects') }}" class="nav-mobile-link">Projects</a></li>
                         <li><a href="{{ route('services') }}" class="nav-mobile-link">Services</a></li>
-                        <li><a href="{{ url('/#contact') }}" class="nav-mobile-cta">Get in touch</a></li>
+                        <li><a href="{{ route('contact') }}" class="nav-mobile-link">Contact</a></li>
+                        <li><a href="{{ route('contact') }}" class="nav-mobile-cta">Get in touch</a></li>
                     </ul>
                 </div>
             </nav>
@@ -57,14 +64,18 @@
                     <a href="{{ url('/#about') }}">About</a>
                     <a href="{{ route('projects') }}">Projects</a>
                     <a href="{{ route('services') }}">Services</a>
-                    <a href="{{ url('/#contact') }}">Contact</a>
+                    <a href="{{ route('contact') }}">Contact</a>
+                    <a href="{{ route('blog.index') }}">Blog</a>
                 </div>
                 <p class="footer-copy">
                     &copy; {{ date('Y') }} Jjuuko Ronald. All rights reserved.
+                    &middot; <a href="{{ route('llms.txt') }}">llms.txt</a>
                 </p>
             </div>
         </footer>
 
         <x-chat-widget />
+
+        @stack('scripts')
     </body>
 </html>

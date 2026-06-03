@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+  <text x="60" y="220" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#f8fafc">Development Services</text>
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="24" fill="#94a3b8">Web · Mobile · API · SEO · WordPress</text>
+  <text x="60" y="360" font-family="system-ui, sans-serif" font-size="16" fill="#64748b">Full-stack development services for businesses in Uganda</text>
+  <text x="60" y="400" font-family="system-ui, sans-serif" font-size="16" fill="#64748b">and East Africa. Custom solutions, modern tech stack.</text>
+  <text x="60" y="470" font-family="system-ui, sans-serif" font-size="14" fill="#475569">Laravel · React · Flutter · API Integration · MTN MoMo · Airtel Money</text>
+</svg>

@@ -6,10 +6,13 @@ use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
+use App\Services\SeoService;
 use Illuminate\View\View;
 
 class FrontendController extends Controller
 {
+    public function __construct(protected SeoService $seo) {}
+
     public function welcome(): View
     {
         $coreServices = Service::active()->where('type', 'core')->ordered()->get();
@@ -22,12 +25,15 @@ class FrontendController extends Controller
 
         $educationExperiences = Experience::active()->where('type', 'education')->ordered()->get();
 
+        $seoData = $this->seo->homeSeoData();
+
         return view('frontend.welcome', compact(
             'coreServices',
             'featuredProjects',
             'skillsByCategory',
             'workExperiences',
             'educationExperiences',
+            'seoData',
         ));
     }
 
@@ -37,7 +43,9 @@ class FrontendController extends Controller
 
         $beyondServices = Service::active()->where('type', 'beyond')->ordered()->get();
 
-        return view('frontend.services', compact('coreServices', 'beyondServices'));
+        $seoData = $this->seo->servicesSeoData();
+
+        return view('frontend.services', compact('coreServices', 'beyondServices', 'seoData'));
     }
 
     public function projects(): View
@@ -46,6 +54,15 @@ class FrontendController extends Controller
 
         $otherProjects = Project::active()->where('is_featured', false)->ordered()->get();
 
-        return view('frontend.projects', compact('featuredProjects', 'otherProjects'));
+        $seoData = $this->seo->projectsSeoData();
+
+        return view('frontend.projects', compact('featuredProjects', 'otherProjects', 'seoData'));
+    }
+
+    public function contact(): View
+    {
+        $seoData = $this->seo->contactSeoData();
+
+        return view('frontend.contact', compact('seoData'));
     }
 }

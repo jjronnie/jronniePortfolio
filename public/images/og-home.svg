@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+  <text x="60" y="220" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#f8fafc">Jjuuko Ronald</text>
+  <text x="60" y="290" font-family="system-ui, sans-serif" font-size="28" fill="#94a3b8">Full-Stack Developer | Kampala, Uganda</text>
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="18" fill="#64748b">Laravel · React · Vue.js · Flutter · WordPress</text>
+  <circle cx="1100" cy="180" r="90" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+  <circle cx="1100" cy="180" r="60" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.2"/>
+  <text x="60" y="450" font-family="system-ui, sans-serif" font-size="14" fill="#475569">Building web &amp; mobile apps for businesses across Uganda and East Africa.</text>
+</svg>
