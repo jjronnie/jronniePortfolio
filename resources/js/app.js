@@ -3,8 +3,10 @@ import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
+import 'highlight.js/styles/atom-one-dark.css';
+import hljs from 'highlight.js';
 import Alpine from 'alpinejs';
-import { createIcons, Database, FileType, Globe, Layout, Palette, Search, Server, Shield, Smartphone, Zap } from 'lucide';
+import { createIcons, Check, Clipboard, Database, FileType, Globe, Layout, Palette, Search, Server, Shield, Smartphone, Zap } from 'lucide';
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -474,6 +476,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function initCodeHighlighting() {
+    document.querySelectorAll('article.prose-custom code').forEach((codeBlock) => {
+        if (codeBlock.closest('.code-block-wrapper')) return;
+
+        const pre = codeBlock.closest('pre');
+        const wrapper = pre || codeBlock.parentElement;
+        const isBlock = pre || codeBlock.textContent.includes('\n');
+
+        if (!isBlock) return;
+
+        hljs.highlightElement(codeBlock);
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'code-copy-btn';
+        copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        copyBtn.title = 'Copy code';
+
+        copyBtn.addEventListener('click', () => {
+            const text = codeBlock.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+                copyBtn.title = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+                    copyBtn.title = 'Copy code';
+                }, 2000);
+            });
+        });
+
+        wrapper.style.position = 'relative';
+        wrapper.appendChild(copyBtn);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    createIcons({ icons: { Database, FileType, Globe, Layout, Palette, Search, Server, Shield, Smartphone, Zap } });
+    initCodeHighlighting();
+    createIcons({ icons: { Check, Clipboard, Database, FileType, Globe, Layout, Palette, Search, Server, Shield, Smartphone, Zap } });
 });

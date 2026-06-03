@@ -24,14 +24,19 @@ class PostSeeder extends Seeder
             'sort_order' => 1,
         ]);
 
-        $mobileCat = PostCategory::create([
-            'name' => 'Mobile Development',
-            'slug' => 'mobile-development',
-            'description' => 'Tips, tutorials, and insights on Flutter, Dart, and cross-platform mobile app development for Android and iOS.',
-            'meta_title' => 'Mobile App Development Articles — Jjuuko Ronald, Kampala Uganda',
-            'meta_description' => 'Mobile app development articles covering Flutter, Dart, cross-platform apps for Android and iOS, and the East African mobile tech ecosystem by Jjuuko Ronald.',
-            'sort_order' => 2,
-        ]);
+        $mobileCat = PostCategory::firstOrCreate(
+            ['slug' => 'mobile-app-development'],
+            [
+                'name' => 'Mobile App Development',
+                'description' => 'Tips, tutorials, and insights on Flutter, Dart, and cross-platform mobile app development for Android and iOS.',
+                'meta_title' => 'Mobile App Development Articles — Jjuuko Ronald, Kampala Uganda',
+                'meta_description' => 'Mobile app development articles covering Flutter, Dart, cross-platform apps for Android and iOS, and the East African mobile tech ecosystem by Jjuuko Ronald.',
+                'sort_order' => 2,
+            ]
+        );
+
+        // Remove old "Mobile Development" category if it exists
+        PostCategory::where('slug', 'mobile-development')->delete();
 
         // Tags
         $laravel = Tag::create(['name' => 'Laravel', 'slug' => 'laravel']);

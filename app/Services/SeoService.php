@@ -68,7 +68,7 @@ class SeoService
     {
         return new SEOData(
             title: 'Jjuuko Ronald | Website & Mobile App Developer Uganda',
-            description: 'Jjuuko Ronald is a website and mobile app developer based in Kampala, Uganda. Building custom websites, cross-platform mobile apps, and web applications for businesses in Uganda and East Africa since 2022.',
+            description: 'Jjuuko Ronald is a website and mobile app developer in Kampala, Uganda building custom websites and cross-platform mobile apps for East African businesses.',
             image: '/images/og-home.svg',
             enableTitleSuffix: false,
             schema: $this->homeSchema(),
@@ -109,7 +109,7 @@ class SeoService
     {
         return new SEOData(
             title: 'About Jjuuko Ronald',
-            description: 'Learn about Jjuuko Ronald, a website and mobile app developer from Kampala, Uganda with expertise in custom websites, cross-platform mobile apps, and web applications. Building for Uganda and East Africa since 2022.',
+            description: 'Learn about Jjuuko Ronald, a website and mobile app developer from Kampala, Uganda building custom websites, mobile apps, and web applications since 2022.',
             image: '/images/og-about.svg',
             schema: $this->aboutSchema(),
         );
@@ -127,7 +127,7 @@ class SeoService
     {
         return new SEOData(
             title: 'Services | Website & Mobile App Development Uganda',
-            description: 'Professional website development, mobile app development, and software consulting services in Uganda and East Africa. Custom solutions for businesses in Kampala and beyond.',
+            description: 'Professional website development, mobile app development, and software consulting services in Uganda and East Africa for businesses in Kampala and beyond.',
             image: '/images/og-services.svg',
             schema: $this->servicesSchema(),
         );
@@ -263,7 +263,7 @@ class SeoService
     {
         return new SEOData(
             title: 'Contact Jjuuko Ronald',
-            description: 'Get in touch with Jjuuko Ronald | hire a website and mobile app developer in Uganda for your website, mobile app, or web application project. Based in Kampala, serving East Africa.',
+            description: 'Get in touch with Jjuuko Ronald | hire a website and mobile app developer in Uganda for your website, mobile app, or web application project.',
             image: '/images/og-contact.svg',
             schema: $this->contactSchema(),
         );
