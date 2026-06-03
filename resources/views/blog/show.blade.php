@@ -136,23 +136,28 @@
             line-height: 1.7;
         }
         .prose-custom pre {
-            background: var(--muted);
+            position: relative;
+            background: #1e1e2e;
             border-radius: 0.5rem;
             padding: 1rem;
             overflow-x: auto;
             margin-bottom: 1.125rem;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .prose-custom code {
-            background: var(--muted);
+            background: #1e1e2e;
             padding: 0.125rem 0.375rem;
             border-radius: 0.25rem;
             font-size: 0.875em;
+            color: #cdd6f4;
         }
         .prose-custom pre code {
             background: none;
             padding: 0;
+            font-size: 0.85rem;
+            color: #cdd6f4;
         }
         .prose-custom img {
             max-width: 100%;

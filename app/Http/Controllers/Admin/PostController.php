@@ -13,6 +13,19 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
+    public function uploadFeaturedImage(Request $request, Post $post): RedirectResponse
+    {
+        $request->validate([
+            'featured_image' => ['required', 'image', 'mimes:jpeg,png,jpg,webp,avif', 'max:2048'],
+        ]);
+
+        $post->addMediaFromRequest('featured_image')->toMediaCollection('featured');
+
+        session()->flash('success', 'Featured image uploaded successfully.');
+
+        return redirect()->back();
+    }
+
     public function index(): View
     {
         $posts = Post::with(['category', 'tags', 'media'])

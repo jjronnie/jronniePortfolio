@@ -32,8 +32,7 @@ class Tag extends Model
 
     public function getSeoTitle(): string
     {
-        return $this->meta_title
-            ?? ($this->name.' — Articles by Jjuuko Ronald, Uganda Developer');
+        return $this->meta_title ?? ('#'.$this->name);
     }
 
     public function getSeoDescription(): string

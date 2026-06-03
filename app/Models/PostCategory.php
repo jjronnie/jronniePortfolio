@@ -37,8 +37,7 @@ class PostCategory extends Model
 
     public function getSeoTitle(): string
     {
-        return $this->meta_title
-            ?? ($this->name.' — Jjuuko Ronald | Laravel Developer Uganda');
+        return $this->meta_title ?? $this->name;
     }
 
     public function getSeoDescription(): string

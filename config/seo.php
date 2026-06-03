@@ -20,7 +20,7 @@ return [
 
     'title' => [
         'infer_title_from_url' => true,
-        'suffix' => ' | Jjuuko Ronald — Website & Mobile App Developer Uganda',
+        'suffix' => ' | Jjuuko Ronald',
         'separator' => ' | ',
         'homepage_title' => null,
     ],

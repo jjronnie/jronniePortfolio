@@ -4,7 +4,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <p class="section-eyebrow">// What I Do</p>
-                <h2 class="section-title">What I <span class="text-gradient">Deliver</span></h2>
+                <h1 class="section-title">What I <span class="text-gradient">Deliver</span></h1>
                 <p class="section-desc">
                     A comprehensive range of development services to bring your digital vision to life -
                     from idea to launch and beyond.

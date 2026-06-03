@@ -225,9 +225,44 @@
         <script src="https://unpkg.com/trix@2.0.10/dist/trix.umd.min.js"></script>
         <script>
             document.addEventListener('trix-initialize', function () {
-                const editor = document.querySelector('trix-editor');
-                if (editor && editor.editor) {
-                    editor.editor.loadHTML(document.getElementById('body').value || '');
+                const editorElement = document.querySelector('trix-editor');
+                if (editorElement && editorElement.editor) {
+                    const bodyInput = document.getElementById('body');
+                    const html = bodyInput.value || '';
+                    editorElement.editor.loadHTML(html);
+                }
+
+                const toolbar = document.querySelector('trix-toolbar .trix-button-row');
+                if (toolbar) {
+                    const group = document.createElement('span');
+                    group.className = 'trix-button-group trix-button-group--text-tools';
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'trix-button trix-button--icon trix-button--icon-code';
+                    btn.setAttribute('data-trix-action', 'x-code-block');
+                    btn.setAttribute('title', 'Code Block');
+                    btn.innerHTML = '<span style="font-family:monospace;font-weight:bold;font-size:0.85rem">&lt;/&gt;</span>';
+                    group.appendChild(btn);
+                    toolbar.appendChild(group);
+                }
+            });
+
+            document.addEventListener('trix-action-invoke', function (e) {
+                if (e.actionName === 'x-code-block') {
+                    const editor = document.querySelector('trix-editor').editor;
+                    const selection = editor.getSelectedRange();
+                    if (selection[0] !== selection[1]) {
+                        editor.activateAttribute('code');
+                    }
+                    editor.activateAttribute('pre');
+                }
+            });
+
+            document.querySelector('form').addEventListener('submit', function () {
+                const editor = document.querySelector('trix-editor').editor;
+                const bodyInput = document.getElementById('body');
+                if (editor && bodyInput) {
+                    bodyInput.value = editor.toString();
                 }
             });
         </script>

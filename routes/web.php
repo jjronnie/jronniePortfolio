@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('skills', AdminSkillController::class);
         Route::resource('experiences', AdminExperienceController::class);
         Route::resource('posts', AdminPostController::class)->parameters(['posts' => 'post']);
+        Route::post('posts/{post}/featured-image', [AdminPostController::class, 'uploadFeaturedImage'])->name('posts.featured-image');
         Route::resource('post-categories', AdminPostCategoryController::class);
         Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);
         Route::resource('contacts', AdminContactController::class)->only(['index', 'show', 'destroy']);

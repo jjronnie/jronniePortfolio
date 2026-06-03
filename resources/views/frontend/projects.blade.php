@@ -4,7 +4,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <p class="section-eyebrow">// Portfolio</p>
-                <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+                <h1 class="section-title">Featured <span class="text-gradient">Projects</span></h1>
                 <p class="section-desc">
                     A selection of featured projects - some of what I've shipped over the years.
                 </p>

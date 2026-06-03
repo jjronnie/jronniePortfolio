@@ -126,7 +126,7 @@ class SeoService
     public function servicesSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Services | Website & Mobile App Development Uganda',
+            title: 'Web & Mobile App Development Services',
             description: 'Professional website development, mobile app development, and software consulting services in Uganda and East Africa for businesses in Kampala and beyond.',
             image: '/images/og-services.svg',
             schema: $this->servicesSchema(),
@@ -208,7 +208,7 @@ class SeoService
 
     public function projectSeoData(array $project): SEOData
     {
-        $title = ($project['name'] ?? 'Project').' | Jjuuko Ronald';
+        $title = $project['name'] ?? 'Project';
         $description = $project['description']
             ?? 'A project built by Jjuuko Ronald, website and mobile app developer from Kampala, Uganda.';
 
@@ -244,7 +244,7 @@ class SeoService
     public function singleServiceSeoData(Service $service): SEOData
     {
         return new SEOData(
-            title: $service->title.' | Jjuuko Ronald',
+            title: $service->title,
             description: Str::limit($service->description, 155),
             image: '/images/og-services.svg',
         );
@@ -253,7 +253,7 @@ class SeoService
     public function singleProjectSeoData(Project $project): SEOData
     {
         return new SEOData(
-            title: $project->title.' | Jjuuko Ronald',
+            title: $project->title,
             description: Str::limit($project->description, 155),
             image: '/images/og-projects.svg',
         );
@@ -262,7 +262,7 @@ class SeoService
     public function contactSeoData(): SEOData
     {
         return new SEOData(
-            title: 'Contact Jjuuko Ronald',
+            title: 'Contact | Website & Mobile App Developer',
             description: 'Get in touch with Jjuuko Ronald | hire a website and mobile app developer in Uganda for your website, mobile app, or web application project.',
             image: '/images/og-contact.svg',
             schema: $this->contactSchema(),

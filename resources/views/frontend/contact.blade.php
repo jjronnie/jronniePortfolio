@@ -4,7 +4,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <p class="section-eyebrow">// Contact</p>
-                <h2 class="section-title">Let's Work <span class="text-gradient">Together</span></h2>
+                <h1 class="section-title">Let's Work <span class="text-gradient">Together</span></h1>
                 <p class="section-desc" style="max-width: 36rem">
                     Always open to new projects, creative ideas and opportunities to build something that
                     matters.

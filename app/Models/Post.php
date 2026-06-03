@@ -92,8 +92,7 @@ class Post extends Model implements Feedable, HasMedia
 
     public function getSeoTitle(): string
     {
-        return $this->meta_title
-            ?? ($this->title.' | Jjuuko Ronald');
+        return $this->meta_title ?? $this->title;
     }
 
     public function getSeoDescription(): string

@@ -4,16 +4,16 @@
             <div class="section-header fade-in">
                 @isset($category)
                     <p class="section-eyebrow">// Category: {{ $category->name }}</p>
-                    <h2 class="section-title">{{ $category->name }}</h2>
+                    <h1 class="section-title">{{ $category->name }}</h1>
                     @if ($category->description)
                         <p class="section-desc">{{ $category->description }}</p>
                     @endif
                 @elseif(isset($tag))
                     <p class="section-eyebrow">// Tagged: {{ $tag->name }}</p>
-                    <h2 class="section-title">Posts tagged &ldquo;{{ $tag->name }}&rdquo;</h2>
+                    <h1 class="section-title">Posts tagged &ldquo;{{ $tag->name }}&rdquo;</h1>
                 @else
                     <p class="section-eyebrow">// Dev Journal</p>
-                    <h2 class="section-title">Latest <span class="text-gradient">Articles</span></h2>
+                    <h1 class="section-title">Latest <span class="text-gradient">Articles</span></h1>
                     <p class="section-desc">
                         Thoughts on web development, mobile apps, Laravel, React, Flutter, and building
                         for the Ugandan and East African tech ecosystem.

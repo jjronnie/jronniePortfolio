@@ -37,9 +37,24 @@
                                         <td class="px-4 py-4">
                                             @php $media = $post->getFirstMedia('featured'); @endphp
                                             @if ($media)
-                                                <img src="{{ $media->getUrl('thumb') }}" alt="Featured" class="w-12 h-9 rounded object-cover">
+                                                <div class="relative group">
+                                                    <img src="{{ $media->getUrl('thumb') }}" alt="Featured" class="w-12 h-9 rounded object-cover">
+                                                    <form action="{{ route('admin.posts.featured-image', $post) }}" method="POST" enctype="multipart/form-data" class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-center justify-center bg-black/50 rounded cursor-pointer">
+                                                        @csrf
+                                                        <label class="text-white text-xs cursor-pointer">
+                                                            Change
+                                                            <input type="file" name="featured_image" accept="image/*" class="hidden" onchange="this.form.submit()">
+                                                        </label>
+                                                    </form>
+                                                </div>
                                             @else
-                                                <div class="w-12 h-9 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 text-xs">—</div>
+                                                <form action="{{ route('admin.posts.featured-image', $post) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <label class="cursor-pointer">
+                                                        <div class="w-12 h-9 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 text-xs hover:bg-gray-200 dark:hover:bg-gray-600 transition">+</div>
+                                                        <input type="file" name="featured_image" accept="image/*" class="hidden" onchange="this.form.submit()">
+                                                    </label>
+                                                </form>
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 font-medium">
