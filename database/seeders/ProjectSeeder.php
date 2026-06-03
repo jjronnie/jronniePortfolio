@@ -60,7 +60,7 @@ class ProjectSeeder extends Seeder
             'description' => 'A property listing platform showcasing available properties with detailed search and contact capabilities.',
             'tags' => ['Real Estate', 'Property Listings', 'Website'],
             'project_url' => 'https://propertyauctioneersug.com/',
-            'is_featured' => false,
+            'is_featured' => true,
             'sort_order' => 5,
         ]);
 
@@ -71,7 +71,7 @@ class ProjectSeeder extends Seeder
             'description' => 'A tech blog for enthusiasts covering the latest in technology, development, and digital innovation.',
             'tags' => ['Blog', 'Content', 'Tech'],
             'project_url' => 'https://thetechtower.com/',
-            'is_featured' => false,
+            'is_featured' => true,
             'sort_order' => 6,
         ]);
 
