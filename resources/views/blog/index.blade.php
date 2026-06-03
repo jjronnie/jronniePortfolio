@@ -28,8 +28,11 @@
             @else
                 <div class="projects-grid stagger fade-in">
                     @foreach ($posts as $post)
-                        @php $imgUrl = $post->getFeaturedUrl('thumb') ?? $post->featured_image; @endphp
-                        <a href="{{ route('blog.show', $post->slug) }}" class="blog-card-horizontal">
+                        @php
+                            $imgUrl = $post->getFeaturedUrl('thumb') ?? $post->featured_image;
+                            $imageLeft = $loop->even;
+                        @endphp
+                        <a href="{{ route('blog.show', $post->slug) }}" class="blog-card-horizontal {{ $imageLeft ? '' : 'image-right' }}">
                             @if ($imgUrl)
                                 <div class="blog-card-image">
                                     <img src="{{ $imgUrl }}" alt="{{ $post->title }}" loading="lazy">
@@ -82,9 +85,6 @@
                         @foreach ($categories as $cat)
                             <a href="{{ route('blog.category', $cat->slug) }}" class="extra-card" style="text-decoration:none">
                                 <h3 style="font-size:1.125rem;font-weight:600">{{ $cat->name }}</h3>
-                                <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted-foreground)">
-                                    {{ $cat->published_posts_count }} post{{ $cat->published_posts_count !== 1 ? 's' : '' }}
-                                </p>
                                 @if ($cat->description)
                                     <p style="margin-top:0.375rem;font-size:0.8rem;color:var(--muted-foreground)">
                                         {{ $cat->description }}

@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'canonical_domain' => env('CANONICAL_DOMAIN', 'jronnie.techtowerinc.com'),
+
 ];

@@ -26,6 +26,7 @@
                                     <th scope="col" class="px-6 py-3">Title</th>
                                     <th scope="col" class="px-6 py-3">Category</th>
                                     <th scope="col" class="px-6 py-3">Featured</th>
+                                    <th scope="col" class="px-6 py-3">Status</th>
                                     <th scope="col" class="px-6 py-3">Active</th>
                                     <th scope="col" class="px-6 py-3">Actions</th>
                                 </tr>
@@ -41,6 +42,13 @@
                                                 <span class="text-yellow-600 dark:text-yellow-400">Yes</span>
                                             @else
                                                 <span class="text-gray-400">No</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @if ($project->status === 'ongoing')
+                                                <span class="text-blue-600 dark:text-blue-400">Ongoing</span>
+                                            @else
+                                                <span class="text-gray-400">Completed</span>
                                             @endif
                                         </td>
                                         <td class="px-6 py-4">
@@ -61,7 +69,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No projects found.</td>
+                                        <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No projects found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

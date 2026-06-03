@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostCategory;
+use App\Models\Project;
+use App\Models\Service;
 use Illuminate\Http\Response;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
@@ -33,6 +36,33 @@ class SitemapController extends Controller
             $sitemap->add(
                 Url::create(route('blog.show', $post->slug))
                     ->setLastModificationDate($post->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                    ->setPriority(0.6)
+            );
+        });
+
+        PostCategory::whereHas('publishedPosts')->each(function (PostCategory $category) use ($sitemap) {
+            $sitemap->add(
+                Url::create(route('blog.category', $category->slug))
+                    ->setLastModificationDate($category->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.5)
+            );
+        });
+
+        Service::active()->each(function (Service $service) use ($sitemap) {
+            $sitemap->add(
+                Url::create(route('service.show', $service->slug))
+                    ->setLastModificationDate($service->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                    ->setPriority(0.6)
+            );
+        });
+
+        Project::active()->each(function (Project $project) use ($sitemap) {
+            $sitemap->add(
+                Url::create(route('project.show', $project->slug))
+                    ->setLastModificationDate($project->updated_at)
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
                     ->setPriority(0.6)
             );

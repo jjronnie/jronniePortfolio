@@ -157,6 +157,7 @@
     {{-- Toggle Button --}}
     <button
         @click="open = !open; if (open) triggerGreeting()"
+        aria-label="Toggle chat"
         class="flex h-14 w-14 items-center justify-center rounded-full bg-[#4F6EF5] text-white shadow-[0_4px_20px_rgba(79,110,245,0.4)] transition hover:scale-105 hover:shadow-[0_6px_28px_rgba(79,110,245,0.5)] active:scale-95 ml-auto"
     >
         <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

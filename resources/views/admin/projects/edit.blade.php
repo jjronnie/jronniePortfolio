@@ -54,6 +54,16 @@
                         </div>
 
                         <div>
+                            <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
+                            <select name="status" id="status" required
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="completed" @selected(old('status', $project->status) === 'completed')>Completed</option>
+                                <option value="ongoing" @selected(old('status', $project->status) === 'ongoing')>Ongoing</option>
+                            </select>
+                            @error('status') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
                             <label for="sort_order" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sort Order</label>
                             <input type="number" name="sort_order" id="sort_order" value="{{ old('sort_order', $project->sort_order) }}" required min="0"
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">

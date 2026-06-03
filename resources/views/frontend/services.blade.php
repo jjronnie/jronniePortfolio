@@ -13,7 +13,7 @@
 
             <div class="services-grid stagger fade-in">
                 @foreach ($coreServices as $service)
-                    <div class="service-card">
+                    <a href="{{ route('service.show', $service->slug) }}" class="service-card" style="text-decoration:none">
                         <div class="service-icon">
                             @if ($service->icon)
                                 <i data-lucide="{{ $service->icon }}" style="width:22px;height:22px"></i>
@@ -30,7 +30,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -46,7 +46,7 @@
 
                 <div class="extra-grid stagger fade-in">
                     @foreach ($beyondServices as $service)
-                        <div class="extra-card">
+                        <a href="{{ route('service.show', $service->slug) }}" class="extra-card" style="text-decoration:none">
                             <div class="service-icon" style="flex-shrink: 0">
                                 @if ($service->icon)
                                     <i data-lucide="{{ $service->icon }}" style="width:22px;height:22px"></i>
@@ -60,31 +60,8 @@
                                     {{ $service->description }}
                                 </p>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
-                </div>
-
-                <div class="cta-card fade-in">
-                    <h3 class="cta-title">Have a project in mind?</h3>
-                    <p class="cta-desc">
-                        Let's turn your idea into a polished, production-ready product your users will love.
-                    </p>
-                    <a href="{{ route('contact') }}" class="btn-primary">
-                        Start a conversation
-                        <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                    </a>
                 </div>
             </div>
         </section>

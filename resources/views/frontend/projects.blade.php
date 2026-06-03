@@ -12,7 +12,7 @@
 
             <div class="projects-featured stagger fade-in">
                 @foreach ($featuredProjects as $project)
-                    <a href="{{ $project->project_url }}" target="_blank" rel="noopener noreferrer" class="project-card">
+                    <a href="{{ route('project.show', $project->slug) }}" class="project-card">
                         <div class="project-card-top">
                             <span class="project-badge">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -28,11 +28,16 @@
                         <p class="project-category">{{ $project->category }}</p>
                         <h3 class="project-title">{{ $project->title }}</h3>
                         <p class="project-desc">{{ $project->description }}</p>
-                        <div class="project-tags">
-                            @foreach ($project->tags as $tag)
-                                <span class="project-tag primary">{{ $tag }}</span>
-                            @endforeach
-                        </div>
+                        @if ($project->tags)
+                            <div class="project-tags">
+                                @foreach ($project->tags as $tag)
+                                    <span class="project-tag primary">{{ $tag }}</span>
+                                @endforeach
+                            </div>
+                        @endif
+                        @if ($project->status === 'ongoing')
+                            <span class="project-tag primary" style="margin-top:0.5rem;display:inline-block">Ongoing</span>
+                        @endif
                     </a>
                 @endforeach
             </div>
@@ -42,7 +47,7 @@
                     <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem">More Projects</h3>
                     <div class="projects-more stagger fade-in">
                         @foreach ($otherProjects as $project)
-                            <a href="{{ $project->project_url }}" target="_blank" rel="noopener noreferrer" class="project-card-sm">
+                            <a href="{{ route('project.show', $project->slug) }}" class="project-card-sm">
                                 <div class="project-card-top">
                                     <span class="project-folder">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -57,30 +62,21 @@
                                 <p class="project-category">{{ $project->category }}</p>
                                 <h4 class="project-title" style="font-size: 1.125rem">{{ $project->title }}</h4>
                                 <p class="project-desc">{{ $project->description }}</p>
-                                <div class="project-tags">
-                                    @foreach ($project->tags as $tag)
-                                        <span class="project-tag secondary">{{ $tag }}</span>
-                                    @endforeach
-                                </div>
+                                @if ($project->tags)
+                                    <div class="project-tags">
+                                        @foreach ($project->tags as $tag)
+                                            <span class="project-tag secondary">{{ $tag }}</span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                                @if ($project->status === 'ongoing')
+                                    <span class="project-tag secondary" style="margin-top:0.5rem;display:inline-block">Ongoing</span>
+                                @endif
                             </a>
                         @endforeach
                     </div>
                 </div>
             @endif
-
-            <div class="cta-card fade-in">
-                <h3 class="cta-title">Like what you see?</h3>
-                <p class="cta-desc">
-                    I'm available for new builds and collaborations - let's make something exceptional.
-                </p>
-                <a href="{{ route('contact') }}" class="btn-primary">
-                    Let's work together
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-            </div>
         </div>
     </section>
 

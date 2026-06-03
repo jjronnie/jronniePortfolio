@@ -28,6 +28,7 @@ it('stores a project', function () {
         'description' => 'A test project description.',
         'tags' => "React\nLaravel",
         'project_url' => 'https://example.com',
+        'status' => 'completed',
         'is_featured' => true,
         'sort_order' => 1,
         'is_active' => true,
@@ -60,6 +61,7 @@ it('updates a project', function () {
         'description' => 'Updated description.',
         'tags' => "Flutter\nDart",
         'project_url' => 'https://updated.com',
+        'status' => 'ongoing',
         'is_featured' => false,
         'sort_order' => 5,
         'is_active' => false,
@@ -82,5 +84,5 @@ it('deletes a project', function () {
 
 it('validates required fields when storing', function () {
     $this->post(route('admin.projects.store'), [])
-        ->assertSessionHasErrors(['title', 'slug', 'category', 'description', 'project_url', 'sort_order']);
+        ->assertSessionHasErrors(['title', 'slug', 'category', 'description', 'project_url', 'status', 'sort_order']);
 });

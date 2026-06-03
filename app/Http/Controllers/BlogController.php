@@ -65,7 +65,7 @@ class BlogController extends Controller
         $category = PostCategory::where('slug', $slug)->firstOrFail();
 
         $posts = $category->publishedPosts()
-            ->paginate(12);
+            ->paginate(20);
 
         $seoData = $this->seo->categorySeoData($category);
 
@@ -80,7 +80,7 @@ class BlogController extends Controller
             ->with(['category', 'tags'])
             ->whereHas('tags', fn ($q) => $q->where('tags.slug', $slug))
             ->orderByDesc('published_at')
-            ->paginate(12);
+            ->paginate(20);
 
         $seoData = $this->seo->tagSeoData($tag);
 

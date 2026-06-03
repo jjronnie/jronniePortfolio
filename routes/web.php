@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SkillController as AdminSkillController;
+use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\AdminChatController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChatController;
@@ -25,11 +26,14 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'welcome'])->name('home');
 Route::get('/services', [FrontendController::class, 'services'])->name('services');
+Route::get('/services/{slug}', [FrontendController::class, 'serviceShow'])->name('service.show');
 Route::get('/projects', [FrontendController::class, 'projects'])->name('projects');
+Route::get('/projects/{slug}', [FrontendController::class, 'projectShow'])->name('project.show');
 
 Route::redirect('/work', '/projects');
 Route::get('/process', fn () => redirect('/'));
@@ -61,6 +65,7 @@ Route::get('/dashboard', function () {
         'posts' => Post::count(),
         'publishedPosts' => Post::where('status', 'published')->count(),
         'experiences' => Experience::count(),
+        'testimonials' => Testimonial::count(),
     ];
 
     return view('dashboard', compact('stats'));
@@ -86,6 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('experiences', AdminExperienceController::class);
         Route::resource('posts', AdminPostController::class)->parameters(['posts' => 'post']);
         Route::resource('post-categories', AdminPostCategoryController::class);
+        Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);
     });
 });
 

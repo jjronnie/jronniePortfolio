@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Project;
+use App\Models\Service;
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use RalphJSmit\Laravel\SEO\Schema\ArticleSchema;
 use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
@@ -236,6 +239,24 @@ class SeoService
         $collection->push(fn () => $schema);
 
         return $collection;
+    }
+
+    public function singleServiceSeoData(Service $service): SEOData
+    {
+        return new SEOData(
+            title: $service->title.' | Jjuuko Ronald',
+            description: Str::limit($service->description, 155),
+            image: '/images/og-services.svg',
+        );
+    }
+
+    public function singleProjectSeoData(Project $project): SEOData
+    {
+        return new SEOData(
+            title: $project->title.' | Jjuuko Ronald',
+            description: Str::limit($project->description, 155),
+            image: '/images/og-projects.svg',
+        );
     }
 
     public function contactSeoData(): SEOData

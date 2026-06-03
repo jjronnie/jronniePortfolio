@@ -798,5 +798,75 @@
       </div>
     </section>
 
+    @if ($featuredProjects->isNotEmpty())
+    <section class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <p class="section-eyebrow">// Featured Work</p>
+          <h2 class="section-title">Recent <span class="text-gradient">Projects</span></h2>
+          <p class="section-desc">A selection of featured projects I've shipped.</p>
+        </div>
+        <div class="testimonials-scroll-wrapper stagger fade-in">
+          <div class="testimonials-scroll">
+            @foreach ($featuredProjects as $project)
+              <a href="{{ route('project.show', $project->slug) }}" class="testimonial-card" style="text-decoration:none">
+                <p class="testimonial-text" style="font-weight:600;font-size:1rem;color:var(--foreground)">{{ $project->title }}</p>
+                <p class="testimonial-text">{{ Str::limit($project->description, 120) }}</p>
+                @if ($project->tags)
+                  <div class="project-tags" style="margin-top:auto">
+                    @foreach (array_slice($project->tags, 0, 3) as $tag)
+                      <span class="project-tag secondary">{{ $tag }}</span>
+                    @endforeach
+                  </div>
+                @endif
+                <div class="testimonial-author" style="border-top-color:var(--border)">
+                  <span style="font-size:0.8rem;color:var(--muted-foreground)">{{ $project->category }}</span>
+                  @if ($project->status === 'ongoing')
+                    <span class="project-tag primary">Ongoing</span>
+                  @endif
+                </div>
+              </a>
+            @endforeach
+          </div>
+        </div>
+        <div class="fade-in" style="margin-top:2rem;text-align:center">
+          <a href="{{ route('projects') }}" class="btn-secondary">View All Projects &rarr;</a>
+        </div>
+      </div>
+    </section>
+    @endif
+
+    @if ($testimonials->isNotEmpty())
+    <section class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <p class="section-eyebrow">// Testimonials</p>
+          <h2 class="section-title">What Clients <span class="text-gradient">Say</span></h2>
+          <p class="section-desc">Trusted by businesses across Uganda and East Africa.</p>
+        </div>
+        <div class="testimonials-scroll-wrapper stagger fade-in">
+          <div class="testimonials-scroll">
+            @foreach ($testimonials as $testimonial)
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  @for ($i = 0; $i < $testimonial->rating; $i++)
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  @endfor
+                </div>
+                <p class="testimonial-text">{{ $testimonial->quote }}</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">{{ $testimonial->avatar_initial ?? substr($testimonial->name, 0, 1) }}</div>
+                  <div>
+                    <p class="testimonial-name">{{ $testimonial->name }}</p>
+                    <p class="testimonial-role">{{ $testimonial->role }}</p>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </section>
+    @endif
 
 </x-frontend-layout>

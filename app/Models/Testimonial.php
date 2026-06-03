@@ -2,23 +2,22 @@
 
 namespace App\Models;
 
+use Database\Factories\TestimonialFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Testimonial extends Model
 {
+    /** @use HasFactory<TestimonialFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'slug',
-        'category',
-        'description',
-        'tags',
-        'project_url',
-        'status',
-        'is_featured',
+        'name',
+        'role',
+        'quote',
+        'rating',
+        'avatar_initial',
         'sort_order',
         'is_active',
     ];
@@ -26,9 +25,7 @@ class Project extends Model
     protected function casts(): array
     {
         return [
-            'tags' => 'array',
-            'status' => 'string',
-            'is_featured' => 'boolean',
+            'rating' => 'integer',
             'is_active' => 'boolean',
         ];
     }
@@ -38,13 +35,8 @@ class Project extends Model
         return $query->where('is_active', true);
     }
 
-    public function scopeFeatured(Builder $query): Builder
-    {
-        return $query->where('is_featured', true);
-    }
-
     public function scopeOrdered(Builder $query): Builder
     {
-        return $query->orderBy('sort_order')->orderBy('title');
+        return $query->orderBy('sort_order')->orderBy('name');
     }
 }
