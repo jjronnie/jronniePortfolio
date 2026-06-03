@@ -143,13 +143,15 @@ class Post extends Model implements Feedable, HasMedia
 
     public function toFeedItem(): FeedItem
     {
+        $summary = preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $this->getSeoDescription());
+
         return FeedItem::create()
             ->id(route('blog.show', $this->slug))
             ->title($this->title)
-            ->summary($this->getSeoDescription())
+            ->summary(trim($summary))
             ->updated($this->getLastModified())
             ->link(route('blog.show', $this->slug))
-            ->authorName($this->author_name)
+            ->authorName($this->author_name ?: 'Jjuuko Ronald')
             ->authorEmail('ronaldjjuuko7@gmail.com')
             ->category($this->category?->name ?? 'Development');
     }
