@@ -49,6 +49,10 @@
                 </div>
             @endif
 
+            <div>
+                @include('components.adsense')
+            </div>
+
             @if ($related->isNotEmpty())
                 <div class="fade-in" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color)">
                     <h2 style="font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;text-align:center">Related Articles</h2>
