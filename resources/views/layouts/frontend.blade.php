@@ -32,6 +32,9 @@
 
     {!! seo($seoData) !!}
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1640926658118061"
+        crossorigin="anonymous"></script>
+
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
     <link rel="alternate" type="application/atom+xml" title="Jjuuko Ronald Dev Blog — Atom Feed"
         href="{{ url('/feed') }}">

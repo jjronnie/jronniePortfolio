@@ -49,7 +49,7 @@
                 </div>
             @endif
 
-            <div>
+            <div class="mt-4" >
                 @include('components.adsense')
             </div>
 

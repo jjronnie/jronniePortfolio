@@ -205,18 +205,26 @@ class Post extends Model implements Feedable, HasMedia
 
     public function getBodyWithAdsAttribute(): string
     {
-        $parts = explode('</p>', $this->body ?? '');
+        $body = $this->body ?? '';
+
+        if (empty($body)) {
+            return '';
+        }
+
+        $parts = preg_split(
+            '/(<p\b[^>]*>.*?<\/p>)/is',
+            $body,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY,
+        );
+
         $output = '';
         $count = 0;
 
-        foreach ($parts as $i => $part) {
-            if (trim($part) === '' && $i === array_key_last($parts)) {
-                continue;
-            }
+        foreach ($parts as $part) {
+            $output .= $part;
 
-            $output .= $part.($i < array_key_last($parts) ? '</p>' : '');
-
-            if (str_starts_with(trim($part), '<p') || str_starts_with(trim($part), '<P')) {
+            if (preg_match('/^<p\b/i', trim($part))) {
                 $count++;
                 if ($count % 3 === 0) {
                     $output .= view('components.adsense')->render();
