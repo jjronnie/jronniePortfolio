@@ -12,11 +12,11 @@
                     <p class="section-eyebrow">// Tagged: {{ $tag->name }}</p>
                     <h1 class="section-title">Posts tagged &ldquo;{{ $tag->name }}&rdquo;</h1>
                 @else
-                    <p class="section-eyebrow">// Dev Journal</p>
+                    <p class="section-eyebrow">// Dev Views</p>
                     <h1 class="section-title">Latest <span class="text-gradient">Articles</span></h1>
                     <p class="section-desc">
-                        Thoughts on web development, mobile apps, Laravel, React, Flutter, and building
-                        for the Ugandan and East African tech ecosystem.
+                        Thoughts on web development, mobile apps, and building
+                        for the Ugandan and African tech ecosystem.
                     </p>
                 @endisset
             </div>
