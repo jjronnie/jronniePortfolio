@@ -203,6 +203,30 @@ class Post extends Model implements Feedable, HasMedia
         return $this->getFeaturedUrl('og');
     }
 
+    public function getBodyWithAdsAttribute(): string
+    {
+        $parts = explode('</p>', $this->body ?? '');
+        $output = '';
+        $count = 0;
+
+        foreach ($parts as $i => $part) {
+            if (trim($part) === '' && $i === array_key_last($parts)) {
+                continue;
+            }
+
+            $output .= $part.($i < array_key_last($parts) ? '</p>' : '');
+
+            if (str_starts_with(trim($part), '<p') || str_starts_with(trim($part), '<P')) {
+                $count++;
+                if ($count % 3 === 0) {
+                    $output .= view('components.adsense')->render();
+                }
+            }
+        }
+
+        return $output;
+    }
+
     protected static function booted(): void
     {
         static::creating(function (Post $post) {

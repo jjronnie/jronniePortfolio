@@ -35,7 +35,7 @@
             </div>
 
             <article class="prose-custom fade-in">
-                {!! $post->body !!}
+                {!! $post->body_with_ads !!}
             </article>
 
             @if ($post->tags->isNotEmpty())
