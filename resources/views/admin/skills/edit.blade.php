@@ -22,9 +22,19 @@
                             @error('category') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
                         <div>
-                            <label for="icon" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Lucide Icon</label>
+                            <label for="icon" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Lucide Icon <span class="text-gray-500 font-normal">(if no SVG above)</span></label>
                             <input type="text" name="icon" id="icon" value="{{ old('icon', $skill->icon) }}" placeholder="code-2" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             @error('icon') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label for="icon_svg" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Custom SVG</label>
+                            <textarea name="icon_svg" id="icon_svg" rows="4" placeholder="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;#currentColor&quot;&gt;...&lt;/svg&gt;" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 font-mono text-xs">{{ old('icon_svg', $skill->icon_svg) }}</textarea>
+                            @error('icon_svg') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                            @if ($skill->icon_svg)
+                                <div class="mt-2 p-2 border border-gray-300 dark:border-gray-600 rounded-md inline-block" style="background:var(--bg-secondary)">
+                                    <span style="width:1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center">{!! $skill->icon_svg !!}</span>
+                                </div>
+                            @endif
                         </div>
                         <div>
                             <label for="percentage" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Percentage</label>
