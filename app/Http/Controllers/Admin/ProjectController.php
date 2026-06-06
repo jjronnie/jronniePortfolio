@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +20,9 @@ class ProjectController extends Controller
 
     public function create(): View
     {
-        return view('admin.projects.create');
+        $skills = Skill::active()->ordered()->get();
+
+        return view('admin.projects.create', compact('skills'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -29,29 +32,33 @@ class ProjectController extends Controller
             'slug' => ['required', 'string', 'max:255', 'unique:projects,slug'],
             'category' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'tags' => ['nullable', 'string'],
-            'project_url' => ['required', 'url', 'max:2048'],
+            'project_url' => ['nullable', 'url', 'max:2048'],
             'status' => ['required', 'string', 'in:completed,ongoing'],
             'is_featured' => ['boolean'],
             'sort_order' => ['required', 'integer', 'min:0'],
             'is_active' => ['boolean'],
+            'skills' => ['nullable', 'array'],
+            'skills.*' => ['exists:skills,id'],
         ]);
 
-        $validated['tags'] = $validated['tags']
-            ? array_map('trim', explode("\n", $validated['tags']))
-            : [];
+        $validated['description'] = array_map('trim', explode("\n", trim($validated['description'])));
+        $validated['tags'] = [];
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
 
-        Project::create($validated);
+        $project = Project::create($validated);
+
+        $project->skills()->sync($request->input('skills', []));
 
         return to_route('admin.projects.index')->with('status', 'Project created successfully.');
     }
 
     public function edit(Project $project): View
     {
-        return view('admin.projects.edit', compact('project'));
+        $skills = Skill::active()->ordered()->get();
+
+        return view('admin.projects.edit', compact('project', 'skills'));
     }
 
     public function update(Request $request, Project $project): RedirectResponse
@@ -61,22 +68,24 @@ class ProjectController extends Controller
             'slug' => ['required', 'string', 'max:255', 'unique:projects,slug,'.$project->id],
             'category' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'tags' => ['nullable', 'string'],
-            'project_url' => ['required', 'url', 'max:2048'],
+            'project_url' => ['nullable', 'url', 'max:2048'],
             'status' => ['required', 'string', 'in:completed,ongoing'],
             'is_featured' => ['boolean'],
             'sort_order' => ['required', 'integer', 'min:0'],
             'is_active' => ['boolean'],
+            'skills' => ['nullable', 'array'],
+            'skills.*' => ['exists:skills,id'],
         ]);
 
-        $validated['tags'] = $validated['tags']
-            ? array_map('trim', explode("\n", $validated['tags']))
-            : [];
+        $validated['description'] = array_map('trim', explode("\n", trim($validated['description'])));
+        $validated['tags'] = [];
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
 
         $project->update($validated);
+
+        $project->skills()->sync($request->input('skills', []));
 
         return to_route('admin.projects.index')->with('status', 'Project updated successfully.');
     }

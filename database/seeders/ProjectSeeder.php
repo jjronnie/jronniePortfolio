@@ -15,7 +15,7 @@ class ProjectSeeder extends Seeder
             'category' => 'Service Marketplace',
             'description' => 'A digital service marketplace connecting providers with customers across Uganda.',
             'tags' => ['Marketplace', 'Mobile App', 'Services'],
-            'project_url' => 'https://luki.ug/',
+            'project_url' => null,
             'is_featured' => true,
             'sort_order' => 1,
         ]);

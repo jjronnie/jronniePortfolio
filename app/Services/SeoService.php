@@ -254,7 +254,7 @@ class SeoService
     {
         return new SEOData(
             title: $project->title,
-            description: Str::limit($project->description, 155),
+            description: Str::limit(is_array($project->description) ? $project->description[0] : $project->description, 155),
             image: '/images/og-projects.svg',
         );
     }

@@ -1173,6 +1173,10 @@ img { max-width: 100%; display: block; }
   .footer-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+@media (min-width: 1024px) {
+  .footer-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
 .footer-col-title {
   font-size: 0.9375rem;
   font-weight: 600;

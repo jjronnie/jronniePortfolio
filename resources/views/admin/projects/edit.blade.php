@@ -33,24 +33,35 @@
                         </div>
 
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
-                            <textarea name="description" id="description" rows="3" required
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description', $project->description) }}</textarea>
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description (one paragraph per line)</label>
+                            <textarea name="description" id="description" rows="5" required
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description', is_array($project->description) ? implode("\n", $project->description) : $project->description) }}</textarea>
                             @error('description') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
-                            <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tags (one per line)</label>
-                            <textarea name="tags" id="tags" rows="4"
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('tags', $project->tags ? implode("\n", $project->tags) : '') }}</textarea>
-                            @error('tags') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                            <label for="project_url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project URL</label>
+                            <input type="url" name="project_url" id="project_url" value="{{ old('project_url', $project->project_url) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            @error('project_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
-                            <label for="project_url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project URL</label>
-                            <input type="url" name="project_url" id="project_url" value="{{ old('project_url', $project->project_url) }}" required
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            @error('project_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Technologies (Skills)</label>
+                            <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                @foreach ($skills as $skill)
+                                    @php $checked = in_array($skill->id, old('skills', $project->skills->pluck('id')->toArray())); @endphp
+                                    <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                        <input type="checkbox" name="skills[]" value="{{ $skill->id }}" @checked($checked)
+                                            class="rounded border-gray-300 dark:border-gray-600 text-indigo-600 shadow-sm focus:ring-indigo-500">
+                                        @if ($skill->icon_svg)
+                                            <span class="shrink-0">{!! $skill->icon_svg !!}</span>
+                                        @endif
+                                        {{ $skill->name }}
+                                    </label>
+                                @endforeach
+                            </div>
+                            @error('skills') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>

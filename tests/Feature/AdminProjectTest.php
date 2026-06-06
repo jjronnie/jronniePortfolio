@@ -25,8 +25,7 @@ it('stores a project', function () {
         'title' => 'Test Project',
         'slug' => 'test-project',
         'category' => 'Web',
-        'description' => 'A test project description.',
-        'tags' => "React\nLaravel",
+        'description' => "A test project description.\nSecond paragraph.",
         'project_url' => 'https://example.com',
         'status' => 'completed',
         'is_featured' => true,
@@ -40,7 +39,7 @@ it('stores a project', function () {
     $project = Project::where('slug', 'test-project')->first();
 
     expect($project)->not->toBeNull();
-    expect($project->tags)->toBe(['React', 'Laravel']);
+    expect($project->description)->toBe(['A test project description.', 'Second paragraph.']);
     expect($project->is_featured)->toBeTrue();
 });
 
@@ -84,5 +83,5 @@ it('deletes a project', function () {
 
 it('validates required fields when storing', function () {
     $this->post(route('admin.projects.store'), [])
-        ->assertSessionHasErrors(['title', 'slug', 'category', 'description', 'project_url', 'status', 'sort_order']);
+        ->assertSessionHasErrors(['title', 'slug', 'category', 'description', 'status', 'sort_order']);
 });

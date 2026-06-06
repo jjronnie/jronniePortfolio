@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             SkillSeeder::class,
             ExperienceSeeder::class,
+            HighlightsSeeder::class,
             ProjectSeeder::class,
             PostSeeder::class,
             BlogPostsSeeder::class,

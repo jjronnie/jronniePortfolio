@@ -31,6 +31,7 @@ use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'welcome'])->name('home');
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/services', [FrontendController::class, 'services'])->name('services');
 Route::get('/services/{slug}', [FrontendController::class, 'serviceShow'])->name('service.show');
 Route::get('/projects', [FrontendController::class, 'projects'])->name('projects');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
@@ -26,11 +27,17 @@ class Project extends Model
     protected function casts(): array
     {
         return [
+            'description' => 'array',
             'tags' => 'array',
             'status' => 'string',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
         ];
+    }
+
+    public function skills(): BelongsToMany
+    {
+        return $this->belongsToMany(Skill::class);
     }
 
     public function scopeActive(Builder $query): Builder

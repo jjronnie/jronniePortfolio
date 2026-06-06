@@ -20,6 +20,11 @@
                                 </svg>
                                 Featured
                             </span>
+                            @if ($project->status === 'completed')
+                                <span style="margin-left:auto;margin-right:0.5rem;font-size:0.625rem;font-weight:600;color:#16a34a">Completed</span>
+                            @elseif ($project->status === 'ongoing')
+                                <span style="margin-left:auto;margin-right:0.5rem;font-size:0.625rem;font-weight:600;color:#ea580c">Ongoing</span>
+                            @endif
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="project-arrow">
                                 <line x1="7" y1="17" x2="17" y2="7" />
                                 <polyline points="7 7 17 7 17 17" />
@@ -27,17 +32,7 @@
                         </div>
                         <p class="project-category">{{ $project->category }}</p>
                         <h3 class="project-title">{{ $project->title }}</h3>
-                        <p class="project-desc">{{ $project->description }}</p>
-                        @if ($project->tags)
-                            <div class="project-tags">
-                                @foreach ($project->tags as $tag)
-                                    <span class="project-tag primary">{{ $tag }}</span>
-                                @endforeach
-                            </div>
-                        @endif
-                        @if ($project->status === 'ongoing')
-                            <span class="project-tag primary" style="margin-top:0.5rem;display:inline-block">Ongoing</span>
-                        @endif
+                        <p class="project-desc">{{ is_array($project->description) ? $project->description[0] : $project->description }}</p>
                     </a>
                 @endforeach
             </div>
@@ -54,6 +49,11 @@
                                             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                                         </svg>
                                     </span>
+                                    @if ($project->status === 'completed')
+                                        <span style="margin-left:auto;margin-right:0.5rem;font-size:0.625rem;font-weight:600;color:#16a34a">Completed</span>
+                                    @elseif ($project->status === 'ongoing')
+                                        <span style="margin-left:auto;margin-right:0.5rem;font-size:0.625rem;font-weight:600;color:#ea580c">Ongoing</span>
+                                    @endif
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="project-arrow">
                                         <line x1="7" y1="17" x2="17" y2="7" />
                                         <polyline points="7 7 17 7 17 17" />
@@ -61,17 +61,7 @@
                                 </div>
                                 <p class="project-category">{{ $project->category }}</p>
                                 <h4 class="project-title" style="font-size: 1.125rem">{{ $project->title }}</h4>
-                                <p class="project-desc">{{ $project->description }}</p>
-                                @if ($project->tags)
-                                    <div class="project-tags">
-                                        @foreach ($project->tags as $tag)
-                                            <span class="project-tag secondary">{{ $tag }}</span>
-                                        @endforeach
-                                    </div>
-                                @endif
-                                @if ($project->status === 'ongoing')
-                                    <span class="project-tag secondary" style="margin-top:0.5rem;display:inline-block">Ongoing</span>
-                                @endif
+                                <p class="project-desc">{{ is_array($project->description) ? $project->description[0] : $project->description }}</p>
                             </a>
                         @endforeach
                     </div>
