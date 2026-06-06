@@ -39,7 +39,7 @@
             </article>
 
             @if ($post->tags->isNotEmpty())
-                <div class="fade-in" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border-color)">
+                <div class="fade-in" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
                     <span style="font-size:0.875rem;color:var(--muted-foreground);align-self:center">Tags:</span>
                     @foreach ($post->tags as $tag)
                         <a href="{{ route('blog.tag', $tag->slug) }}" style="display:inline-block;padding:0.25rem 0.75rem;border-radius:999px;background:var(--muted);color:var(--foreground);text-decoration:none;font-size:0.8rem">
@@ -54,24 +54,24 @@
             </div>
 
             @if ($related->isNotEmpty())
-                <div class="fade-in" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color)">
+                <div class="fade-in" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
                     <h2 style="font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;text-align:center">Related Articles</h2>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+                    <div class="projects-grid">
                         @foreach ($related as $relatedPost)
-                            <a href="{{ route('blog.show', $relatedPost->slug) }}" class="project-card" style="text-decoration:none;display:flex;flex-direction:column">
-                                @php $relImgUrl = $relatedPost->getFeaturedUrl('thumb') ?? $relatedPost->featured_image; @endphp
+                            @php $relImgUrl = $relatedPost->getFeaturedUrl('thumb') ?? $relatedPost->featured_image; @endphp
+                            <a href="{{ route('blog.show', $relatedPost->slug) }}" class="blog-card-horizontal">
                                 @if ($relImgUrl)
-                                    <div class="project-img" style="background:var(--border-color);overflow:hidden;min-height:8rem">
-                                        <img src="{{ $relImgUrl }}" alt="{{ $relatedPost->title }}" style="width:100%;height:100%;object-fit:cover">
+                                    <div class="blog-card-image">
+                                        <img src="{{ $relImgUrl }}" alt="{{ $relatedPost->title }}" loading="lazy">
                                     </div>
                                 @endif
-                                <div class="project-info" style="flex:1">
+                                <div class="blog-card-content">
                                     @if ($relatedPost->category)
                                         <span class="tech-badge">{{ $relatedPost->category->name }}</span>
                                     @endif
-                                    <h3 style="font-size:1rem;font-weight:600;margin-top:0.5rem">{{ $relatedPost->title }}</h3>
-                                    <p style="font-size:0.85rem;color:var(--muted-foreground);margin-top:0.25rem">
-                                        {{ strip_tags(Str::limit($relatedPost->body, 100)) }}
+                                    <h3 class="project-title" style="font-size:1.125rem;margin-top:0">{{ $relatedPost->title }}</h3>
+                                    <p class="project-desc" style="font-size:0.875rem">
+                                        {{ strip_tags(Str::limit($relatedPost->body, 120)) }}
                                     </p>
                                 </div>
                             </a>
@@ -80,7 +80,7 @@
                 </div>
             @endif
 
-            <div class="fade-in" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color);text-align:center">
+            <div class="fade-in" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center">
                 <a href="{{ route('blog.index') }}" class="btn-secondary">&larr; Back to Blog</a>
             </div>
         </div>
